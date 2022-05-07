@@ -1,3 +1,6 @@
+# Install Modules
+
+Pls Before run the app, execute `npm i` 
 # MerchandiseFront
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
@@ -14,14 +17,34 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# evidencias
 
-## Running end-to-end tests
+iniciamos con la vista principal de la aplicación
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.18.40%20AM.jpeg)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+luego seguimos con el apartado de agregar un producto en el cual la maxima fecha es el dia e el que están registrando el producto, tal cual como lo pueden observar en las imagenes posteriores
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.19.56%20AM.jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.26.25%20AM%20(1).jpeg)
 
-## Further help
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.26.25%20AM.jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.28.37%20AM.jpeg)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ya que probamos el agregar, ahora vamos a usar el editar, en el cual nos va a traer los datos ya colocados anterior mente, y con oportunidad de cambiarlos, en este caso se decidió cambiar la cantidad de paquetes de tornillos
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.28.37%20AM%20(1).jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.28.37%20AM%20(2).jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.28.37%20AM%20(3).jpeg)
+
+la siguiente prueba que vamos a hacer es de eliminar un producto, en el cual notaran que antes de eliminarlo, piden que escojan el empleado con el cual se hizo (esto ya que no se hizo un login)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.29.09%20AM.jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.30.40%20AM%20(1).jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.30.40%20AM%20(2).jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.30.40%20AM.jpeg)
+
+ya por ultimo, usaremos el filtrado, el cual se puede usar todos al tiempo, con los datos que uno quiera colocar, a continuación se mostrará alguna pruebas que se hicieron con el filtro
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.33.37%20AM.jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.33.37%20AM%20(1).jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.33.37%20AM%20(2).jpeg)
+>![Image text](https://github.com/cristian-garzon/evidencias/blob/main/WhatsApp%20Image%202022-05-07%20at%202.33.37%20AM%20(3).jpeg)
+
+
