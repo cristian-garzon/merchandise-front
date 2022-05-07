@@ -6,3 +6,4 @@ export interface Employee {
   age? : number;
   jobPosition? : JobPosition;
 }
+

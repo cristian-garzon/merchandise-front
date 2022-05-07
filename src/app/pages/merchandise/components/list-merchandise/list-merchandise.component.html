@@ -1,18 +1,124 @@
-<p-table [value]="merchandises" responsiveLayout="scroll">
-<ng-template pTemplate="header">
-    <tr>
-      <th>id merchandise</th>
-      <th>product name</th>
-      <th>quantity</th>
-      <th>enter date</th>
-    </tr>
+<p-toast></p-toast>
+<div class="card">
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+      <div class="p-inputgroup" style="margin-right: 1rem;">
+        <span class="p-inputgroup-addon"> <i class="pi pi-key"></i></span>
+        <p-inputNumber mode="decimal" [min]="0" [(ngModel)]="filter.idEmployee" placeholder="id employee"></p-inputNumber>
+      </div>
+      <div class="p-inputgroup" style="margin-right: 1rem;">
+        <span class="p-inputgroup-addon"> <i class="pi pi-key"></i></span>
+        <p-inputNumber mode="decimal" [min]="0" [(ngModel)]="filter.idMerchandise" placeholder="id Product"></p-inputNumber>
+      </div>
+      <div class="p-inputgroup" style="margin-right: 1rem;">
+        <span class="p-inputgroup-addon"> <i class="pi pi-user"></i></span>
+        <input type="text" pInputText placeholder="name employee" [(ngModel)]="filter.nameEmployee" />
+      </div>
+      <div class="p-inputgroup" style="margin-right: 1rem;">
+        <span class="p-inputgroup-addon"> <i class="pi pi-user"></i></span>
+        <input type="text" pInputText placeholder="name product" [(ngModel)]="filter.nameMerchandise" />
+      </div>
+      <div class="p-inputgroup" style="margin-right: 1rem;">
+        <button pButton pRipple type="button" icon="pi pi-replay" (click)="clearFilter()"  class="p-button-rounded p-button-help"></button>
+      </div>
+
+    </ng-template>
+    <ng-template pTemplate="right">
+      <div class="p-inputgroup" style="margin-right: 1rem;">
+        <button pButton pRipple type="button"(click)="filterMerchandise()" icon="pi pi-search" label="Buscar" class="p-button-secondary mr-1 mb-2"></button>
+      </div>
+    </ng-template>
+  </p-toolbar>
+  <p-table #dt [value]="merchandises" [rows]="5" [paginator]="true" responsiveLayout="scroll"
+           [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-info mr-2" (click)="windowMerchandise()"></button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">Id Merchandise</th>
+        <th pSortableColumn="price">Product name</th>
+        <th pSortableColumn="category">Quantity</th>
+        <th pSortableColumn="rating">enter Date</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-merchandise>
+      <tr>
+        <td>{{merchandise.idMerchandise}}</td>
+        <td>{{merchandise.productName}}</td>
+        <td>{{merchandise.quantity}}</td>
+        <td>{{merchandise.enterDate | date : 'mediumDate'}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" (click)="editMerchandiseWindow(merchandise)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteMerchandise(merchandise)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="productDialog" [closable]="false" [style]="{width: '450px'}" header="merchandise detail" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="field">
+      <label for="productName">Product name</label>
+      <input type="text" pInputText id="productName" [(ngModel)]="newMerchandise.productName"  required autofocus />
+      <small class="p-error" *ngIf="submitted && !newMerchandise.productName">Product name is required.</small>
+    </div>
+    <div class="field">
+      <label for="quantity">Quantity</label>
+      <p-inputNumber id="quantity" inputId="quantity" [(ngModel)]="newMerchandise.quantity" ></p-inputNumber>
+      <small class="p-error" *ngIf="submitted && !newMerchandise.quantity">Quantity is required.</small>
+    </div>
+    <div class="field">
+      <label>Enter Date</label>
+      <p-calendar [maxDate]="today" [(ngModel)]="newMerchandise.enterDate" appendTo="body"></p-calendar>
+      <small class="p-error" *ngIf="submitted && !newMerchandise.enterDate">Enter Date is required.</small>
+    </div>
+    <div class="field">
+      <label for="inventoryStatus">Employee</label>
+      <p-dropdown [(ngModel)]="employee" appendTo="body"  id="inventoryStatus" inputId="inventoryStatus" [options]="employees" placeholder="Select employee">
+        <ng-template  pTemplate="selectedItem">
+          <div class="country-item country-item-value"  *ngIf="employee">
+            <div>{{employee.name}}</div>
+          </div>
+        </ng-template>
+        <ng-template let-option pTemplate="item">
+          <div>{{option.name}}</div>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-error" *ngIf="submitted && !employee">employe is required.</small>
+    </div>
   </ng-template>
-  <ng-template pTemplate="body" let-merchandise>
-    <tr>
-      <td>{{merchandise.idMerchandise}}</td>
-      <td>{{merchandise.productName}}</td>
-      <td>{{merchandise.quantity}}</td>
-      <td>{{merchandise.enterDate}}</td>
-    </tr>
+<ng-template pTemplate="footer">
+  <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="cancelWindow()"></button>
+  <button *ngIf="!edit" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="addMerchandise()"></button>
+  <button *ngIf="edit" pButton pRipple label="Update" icon="pi pi-pencil" class="p-button-text" (click)="editMerchandise()"></button>
+</ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="employeeDialog" [closable]="false" [style]="{width: '450px'}" header="select employee" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="field">
+      <label for="employe">Employee</label>
+      <p-dropdown [(ngModel)]="employee" appendTo="body"  id="employe" inputId="inventoryStatus" [options]="employees" placeholder="Select employee">
+        <ng-template  pTemplate="selectedItem">
+          <div class="country-item country-item-value"  *ngIf="employee">
+            <div>{{employee.name}}</div>
+          </div>
+        </ng-template>
+        <ng-template let-option pTemplate="item">
+          <div>{{option.name}}</div>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-error" *ngIf="submitted && !employee">employe is required.</small>
+    </div>
   </ng-template>
-</p-table>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="cancelWindowDelete()"></button>
+    <button pButton pRipple label="choose" icon="pi pi-search" class="p-button-text" (click)="deleteMerchandise(undefined, employee?.idEmployee)"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
